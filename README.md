@@ -6,3 +6,4 @@ You are a backend developer for “Zenith,” a rapidly growing e-commerce compa
 
 Your task is to design and build this RESTful API from the ground up using Node.js, Express, and Mongoose. The API must handle all fundamental CRUD operations and include advanced features like filtering, sorting, and pagination to manage a large and complex product catalog.
 
+[Project Instructions](https://ps-lms.vercel.app/curriculum/se/319/sba)
