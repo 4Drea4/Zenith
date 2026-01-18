@@ -17,8 +17,10 @@ router.get ('/', async (req, res) => {
         if (minPrice || maxPrice) {
             filter.price = {};
             if (minPrice) filter.price.$gte = Number(minPrice);
-            if (maxPrice) filter.price.$lte
+            if (maxPrice) filter.price.$lte= Number(maxPrice)
         }
+    //omg help me ...query
+        let query = Product.find(filter)
     }
 })
 //Post api create
