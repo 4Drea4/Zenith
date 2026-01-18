@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Product = require('../models/Product');
 
-//Post api
+//Post api create
 router.post('/', async (req,res)=>{
     try{
         const createProduct = await Product.create(req.body);
@@ -15,3 +15,5 @@ router.post('/', async (req,res)=>{
 })
 }
 })
+
+module.exports = router;

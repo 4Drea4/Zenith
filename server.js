@@ -18,6 +18,7 @@ app.get('/', (req,res)=>{
     res.send('<h1>Zenith API</h1>');
 })
 app.use('/api/products', productRoutes);
+
 //listen to the port
 app.listen(PORT, () =>{
     console.log(`Server is running on the ${PORT}`)
