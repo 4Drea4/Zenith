@@ -55,4 +55,11 @@ router.put('/:id', async (req,res)=> {
 
 })
 
+//delete api products id
+router .delete('/:id', async (req,res) => {
+    try{
+        const deleteProduct = await Product.findByIdAndDelete(req.params.id);
+    }
+})
+
 module.exports = router;
