@@ -33,4 +33,26 @@ router.get('/:id',async (req,res)=> {
     }
 });
 
+//put api product id ...update it
+router.put('/:id', async (req,res)=> {
+    try {
+        const updatedProduct = await Product.findByIdAndUpdate (
+            req.params.id,
+            req.body,
+            {new:true}
+        );
+
+        if(!updatedProduct) {
+            return res.status(404).json({message: 'Can not update this product'});
+        }
+        res.json(updatedProduct);
+    } catch (error) {
+        res.status(400).json({
+            message: 'Failed to update product',
+            error: error.message
+        });
+    }
+
+})
+
 module.exports = router;
