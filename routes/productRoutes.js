@@ -3,6 +3,24 @@ const router = express.Router();
 
 const Product = require('../models/Product');
 
+//querying
+router.get ('/', async (req, res) => {
+    try {
+        const {category, minPrice, maxPrice , sortBy, page, limit} = req.query;
+
+        //filter
+        const filter ={};
+
+        if (category) {
+            filter.category = category;
+        }
+        if (minPrice || maxPrice) {
+            filter.price = {};
+            if (minPrice) filter.price.$gte = Number(minPrice);
+            if (maxPrice) filter.price.$lte
+        }
+    }
+})
 //Post api create
 router.post('/', async (req,res)=>{
     try{
