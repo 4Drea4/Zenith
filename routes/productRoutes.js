@@ -3,26 +3,38 @@ const router = express.Router();
 
 const Product = require('../models/Product');
 
-//querying
-router.get ('/', async (req, res) => {
-    try {
-        const {category, minPrice, maxPrice , sortBy, page, limit} = req.query;
+// still working on this advance query 
+// //querying
+// router.get ('/', async (req, res) => {
+//     try {
+//         const {category, minPrice, maxPrice , sortBy, page, limit} = req.query;
 
-        //filter
-        const filter ={};
+//         //filter
+//         const filter ={};
 
-        if (category) {
-            filter.category = category;
-        }
-        if (minPrice || maxPrice) {
-            filter.price = {};
-            if (minPrice) filter.price.$gte = Number(minPrice);
-            if (maxPrice) filter.price.$lte= Number(maxPrice)
-        }
-    //omg help me ...query
-        let query = Product.find(filter)
-    }
-})
+//         if (category) {
+//             filter.category = category;
+//         }
+//         if (minPrice || maxPrice) {
+//             filter.price = {};
+//             if (minPrice) filter.price.$gte = Number(minPrice);
+//             if (maxPrice) filter.price.$lte= Number(maxPrice)
+//         }
+
+//     //omg help me ...query
+//         let query = Product.find(filter)
+//         .find({name:1,inStock: 1, price: 1, category: 1 });
+       
+
+//     //sorting
+//     if (sort === 'price_up') query = query.sort({price:1});
+//     if (sort === 'price_down') query = query.sort({price:-1});
+    
+
+//     }
+// })
+
+
 //Post api create
 router.post('/', async (req,res)=>{
     try{
@@ -59,7 +71,7 @@ router.put('/:id', async (req,res)=> {
         const updatedProduct = await Product.findByIdAndUpdate (
             req.params.id,
             req.body,
-            {new:true}
+            {new:true, runValidators:true}
         );
 
         if(!updatedProduct) {
