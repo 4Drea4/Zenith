@@ -27,8 +27,8 @@ router.get ('/', async (req, res) => {
        
 
     //sorting
-    if (sort === 'price_asc') query = query.sort({price:1});
-    if (sort === 'price_desc') query = query.sort({price:-1});
+    if (sortBy === 'price_asc') query = query.sort({price:1});
+    if (sortBy === 'price_desc') query = query.sort({price:-1});
     
     //pagination
     const pageNum = parseInt(page) || 1;
@@ -45,7 +45,7 @@ router.get ('/', async (req, res) => {
     }
 
     }
-})
+)
 
 
 //Post api create
@@ -115,7 +115,6 @@ router .delete('/:id', async (req,res) => {
 
             });
         }
-    
 })
 
 module.exports = router;
