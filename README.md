@@ -8,3 +8,6 @@ Your task is to design and build this RESTful API from the ground up using Node.
 
 [Project Instructions](https://ps-lms.vercel.app/curriculum/se/319/sba)
 
+Problems:
+My advanced query was giving me some trouble, testing helped me debug a bit. But I can not currently search for specific id numbers. I am however getting my error message so I suppose that points me in the right direction.
+Setting up the advanced query was challenging as well. 
