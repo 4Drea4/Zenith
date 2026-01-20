@@ -4,35 +4,48 @@ const router = express.Router();
 const Product = require('../models/Product');
 
 // still working on this advance query 
-// //querying
-// router.get ('/', async (req, res) => {
-//     try {
-//         const {category, minPrice, maxPrice , sortBy, page, limit} = req.query;
+//querying
+router.get ('/', async (req, res) => {
+    try {
+        const {category, minPrice, maxPrice , sortBy, page, limit} = req.query;
 
-//         //filter
-//         const filter ={};
+        //filter
+        const filter ={};
 
-//         if (category) {
-//             filter.category = category;
-//         }
-//         if (minPrice || maxPrice) {
-//             filter.price = {};
-//             if (minPrice) filter.price.$gte = Number(minPrice);
-//             if (maxPrice) filter.price.$lte= Number(maxPrice)
-//         }
+        if (category) {
+            filter.category = category;
+        }
+        if (minPrice || maxPrice) {
+            filter.price = {};
+            if (minPrice) filter.price.$gte = Number(minPrice);
+            if (maxPrice) filter.price.$lte= Number(maxPrice)
+        }
 
-//     //omg help me ...query
-//         let query = Product.find(filter)
-//         .find({name:1,inStock: 1, price: 1, category: 1 });
+    //omg help me ...query
+        let query = Product.find(filter)
+        .select({name:1,inStock: 1, price: 1, category: 1, createdAt:1 });
        
 
-//     //sorting
-//     if (sort === 'price_up') query = query.sort({price:1});
-//     if (sort === 'price_down') query = query.sort({price:-1});
+    //sorting
+    if (sort === 'price_asc') query = query.sort({price:1});
+    if (sort === 'price_desc') query = query.sort({price:-1});
     
+    //pagination
+    const pageNum = parseInt(page) || 1;
+    const limitNum = parseInt(limit) || 10;
+    const skipNum = (pageNum -1) * limitNum;
+    const products = await query.skip(skipNum).limit(limitNum);
 
-//     }
-// })
+    res.json(products);
+    }catch (error) {
+        res.status(500).json({
+            message: 'Uh oh couldnt load the products',
+            error: error.message
+        })
+    }
+
+    }
+})
 
 
 //Post api create
